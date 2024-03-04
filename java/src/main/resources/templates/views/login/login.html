@@ -9,7 +9,7 @@
 	<div class="d-flex flex-column justify-content-center align-items-center">
 		<h3 class="col-6">ログインフォーム</h3>
 		<div class="col-6">
-			<form method="post" action="/" class="card">
+			<form method="post" th:action="@{/login}" class="card">
 				<div class="card-header">
 					ログインフォーム
 				</div>
@@ -32,7 +32,7 @@
 				</div>
 				<div class="card-footer">
 					<div class="d-flex justify-content-between">
-						<a th:href="@{/register/}" class="btn btn-outline-secondary">新規登録</a>
+						<a th:href="@{/register/}" class="btn btn-outline-secondary">新規登録へ</a>
 						<button type="submit" class="btn btn-primary">ログイン</button>
 					</div>
 				</div>

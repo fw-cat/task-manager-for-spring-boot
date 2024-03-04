@@ -9,8 +9,7 @@ public class TopController {
 
 	@GetMapping("/")
 	public ModelAndView top(ModelAndView model) {
-
-		model.setViewName("views/login");
+		model.setViewName("views/top");
 		return model;
 	}
 }

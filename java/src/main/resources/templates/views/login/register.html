@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/base :: layout(~{::title},~{::body/content()})}">
+
+<head>
+	<title>タスク管理サイト</title>
+</head>
+
+<body>
+	<div class="d-flex flex-column justify-content-center align-items-center">
+		<h3 class="col-6">新規登録フォーム</h3>
+		<div class="col-6">
+			<form method="post" th:action="@{/register/}" class="card">
+				<div class="card-header">
+					新規登録フォーム
+				</div>
+				<div class="card-body">
+                    <div class="row">
+                        <label for="user_name" class="col-4 col-form-label">ユーザ名</label>
+                        <div class="col-5">
+                            <input type="text" class="form-control" placeholder="ユーザ名を入力してください" id="user_name"
+                                name="user_name">
+                        </div>
+                    </div>
+
+					<div class="row mt-3">
+						<label for="mail_address" class="col-4 col-form-label">メールアドレス</label>
+						<div class="col-5">
+							<input type="email" class="form-control" placeholder="メールアドレスを入力してください" id="mail_address"
+								name="mail_address">
+						</div>
+					</div>
+
+					<div class="row mt-3">
+						<label for="password" class="col-4 col-form-label">パスワード</label>
+						<div class="col-5">
+							<input type="password" class="form-control" placeholder="パスワードを入力してください" id="password"
+								name="password">
+						</div>
+					</div>
+				</div>
+				<div class="card-footer">
+					<div class="d-flex justify-content-between">
+						<a th:href="@{/login/}" class="btn btn-outline-secondary">ログイン画面へ</a>
+						<button type="submit" class="btn btn-primary">新規登録</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</body>
+
+</html>
