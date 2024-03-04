@@ -1,0 +1,39 @@
+version: "3.4"
+
+volumes:
+  db-store:
+  flyway-drivers:
+
+services:
+  mysql:
+    image: mysql
+    volumes:
+      - db-store:/var/lib/mysql
+      - ./infra/docker/mysql/init.d/:/docker-entrypoint-initdb.d/
+    ports:
+      - 3336:3306
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: sercret
+      MYSQL_DATABASE: mysql_sample
+      MYSQL_USER: javaer
+      MYSQL_PASSWORD: sercret
+
+  adminer:
+    image: adminer:latest
+    restart: always
+    ports:
+      - 33368:8080
+
+  phpmyadmin:
+    image: phpmyadmin
+    depends_on:
+      - mysql
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOSTS=mysql
+      - PMA_USER=javaer
+      - PMA_PASSWORD=sercret
+    ports:
+      - 33369:80

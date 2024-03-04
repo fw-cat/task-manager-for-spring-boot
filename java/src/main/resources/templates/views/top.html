@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/base :: layout(~{::title},~{::body/content()})}">
+
+<head>
+	<title>タスク管理サイト</title>
+</head>
+
+<body>
+	<h3>タスク一覧</h3>
+
+	<div th:if="${addressList!=null and !addressList.empty}">
+		<table class="table table-striped">
+			<thead>
+				<th>#</th>
+				<th>名前</th>
+				<th>メールアドレス</th>
+				<th>電話番号</th>
+				<th>郵便番号</th>
+				<th>住所</th>
+				<th role="action"></th>
+			</thead>
+			<tbody>
+				<tr class="align-middle" th:each="addressBook, stat : ${addressList}" th:object="${addressBook}">
+					<td th:text="${stat.count}"></td>
+					<td th:text="|*{lastName}　*{firstName}|"></td>
+					<td th:text="*{mailAddress}"></td>
+					<td th:text="*{phoneNumber}"></td>
+					<td th:text="*{zipCode}"></td>
+					<td th:text="*{getAddressText()}"></td>
+					<td>
+						<div class="d-flex justify-content-around">
+							<a class="btn btn-info btn-sm" th:href="@{/edit/{id}(id=*{id})}">編集</a>
+							<button class="btn btn-danger btn-sm btn-delete-modal" th:data-id="*{id}" th:data-user="|*{lastName}　*{firstName}|">削除</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div id="deleteConfirm" class="modal fade" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">削除確認</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						「<strong id="deleteUser"></strong>」さんを削除してもよろしいですか？
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<form id="deleteForm" action="#" method="post">
+							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+							<button type="submit" class="btn btn-danger">削除</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script th:src="@{/js/index.js}"></script>
+	</div>
+	<div th:unless="${addressList!=null and !addressList.empty}">
+		<div class="alert alert-danger" role="alert">
+			データなし
+		</div>
+	</div>
+</body>
+
+</html>

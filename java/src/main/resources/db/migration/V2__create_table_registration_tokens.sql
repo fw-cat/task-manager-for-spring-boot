@@ -1,0 +1,10 @@
+CREATE TABLE registration_tokens (
+    id SERIAL PRIMARY KEY,
+    user_id INT UNIQUE NOT NULL,
+    token TEXT NOT NULL,
+    status INT NOT NULL,
+    expires_at TIMESTAMP NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP NULL -- ソフトデリート用のカラムを追加
+) CHARACTER SET utf8mb4 COLLATE 'utf8mb4_general_ci';

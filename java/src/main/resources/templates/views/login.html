@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/base :: layout(~{::title},~{::body/content()})}">
+
+<head>
+	<title>タスク管理サイト</title>
+</head>
+
+<body>
+	<div class="d-flex flex-column justify-content-center align-items-center">
+		<h3 class="col-6">ログインフォーム</h3>
+		<div class="col-6">
+			<form method="post" action="/" class="card">
+				<div class="card-header">
+					ログインフォーム
+				</div>
+				<div class="card-body">
+					<div class="row">
+						<label for="mailAddress" class="col-4 col-form-label">メールアドレス</label>
+						<div class="col-5">
+							<input type="email" class="form-control" placeholder="メールアドレスを入力してください" id="mailAddress"
+								name="mailA_address">
+						</div>
+					</div>
+
+					<div class="row mt-3">
+						<label for="password" class="col-4 col-form-label">パスワード</label>
+						<div class="col-5">
+							<input type="password" class="form-control" placeholder="パスワードを入力してください" id="password"
+								name="password">
+						</div>
+					</div>
+				</div>
+				<div class="card-footer">
+					<div class="d-flex justify-content-between">
+						<a th:href="@{/register/}" class="btn btn-outline-secondary">新規登録</a>
+						<button type="submit" class="btn btn-primary">ログイン</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</body>
+
+</html>
