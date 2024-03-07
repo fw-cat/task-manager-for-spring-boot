@@ -55,6 +55,12 @@ dependencies {
 	implementation 'org.flywaydb:flyway-core:10.7.2'
 	// https://mvnrepository.com/artifact/org.flywaydb/flyway-mysql
 	implementation 'org.flywaydb:flyway-mysql:10.7.2'
+
+    // https://mvnrepository.com/artifact/org.springframework.session/spring-session-core
+    implementation 'org.springframework.session:spring-session-core:3.2.1'
+
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
+    implementation 'org.springframework.boot:spring-boot-starter-mail:3.2.3'
 }
 
 tasks.named('test') {

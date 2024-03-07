@@ -34,9 +34,11 @@ public class RegisterController {
 
 		try {
 			this.userService.registerUser(registerForm);
+
 		} catch (Exception e) {
 			return this.index(registerForm, model);
 		}
+		model.setViewName("redirect:/");
 		return model;
 	}
 }
