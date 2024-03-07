@@ -13,8 +13,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import jakarta.validation.constraints.NotBlank;
-import jp.ac.ohara.taskManager.config.messages.ErrorMessages;
 import lombok.Data;
 
 @Data
@@ -25,9 +23,6 @@ public class TaskTag {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@NotBlank(message = ErrorMessages.BLANK_MESSAGE)
-	private String name;
 
 	@LastModifiedDate
 	@Temporal(TemporalType.TIMESTAMP)

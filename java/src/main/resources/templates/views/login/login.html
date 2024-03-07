@@ -9,16 +9,16 @@
 	<div class="d-flex flex-column justify-content-center align-items-center">
 		<h3 class="col-6">ログインフォーム</h3>
 		<div class="col-6">
-			<form method="post" th:action="@{/login}" class="card">
+			<form method="post" th:action="@{/login/}" class="card" th:object="${loginForm}">
 				<div class="card-header">
 					ログインフォーム
 				</div>
 				<div class="card-body">
 					<div class="row">
-						<label for="mailAddress" class="col-4 col-form-label">メールアドレス</label>
+						<label for="mail_address" class="col-4 col-form-label">メールアドレス</label>
 						<div class="col-5">
-							<input type="email" class="form-control" placeholder="メールアドレスを入力してください" id="mailAddress"
-								name="mailA_address">
+							<input type="email" class="form-control" placeholder="メールアドレスを入力してください" id="mail_address"
+								name="mail_address" th:field="*{mailAddress}">
 						</div>
 					</div>
 
@@ -26,7 +26,7 @@
 						<label for="password" class="col-4 col-form-label">パスワード</label>
 						<div class="col-5">
 							<input type="password" class="form-control" placeholder="パスワードを入力してください" id="password"
-								name="password">
+								name="password" th:field="*{password}">
 						</div>
 					</div>
 				</div>
