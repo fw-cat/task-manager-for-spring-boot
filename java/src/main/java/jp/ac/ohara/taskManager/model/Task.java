@@ -17,7 +17,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
 import jp.ac.ohara.taskManager.config.messages.ErrorMessages;
@@ -39,10 +38,6 @@ public class Task {
 
 	@NotBlank(message = ErrorMessages.BLANK_MESSAGE)
 	private String description;
-
-	@NotBlank(message = ErrorMessages.BLANK_MESSAGE)
-	@Email(message = ErrorMessages.EMAIL)
-	private String priority;
 
 	@PositiveOrZero(message = ErrorMessages.POSITIVE_OR_ZERO)
 	private int status;

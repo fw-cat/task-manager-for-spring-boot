@@ -28,11 +28,11 @@ public class UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	public void registerUser(RegisterForm form) {
-		this.registerUser(form.getUserName(), form.getMailAddress(), form.getPassword());
+	public void preRegisterUser(RegisterForm form) {
+		this.preRegisterUser(form.getUserName(), form.getMailAddress(), form.getPassword());
 	}
 
-	public void registerUser(String userName, String email, String password) {
+	public void preRegisterUser(String userName, String email, String password) {
 		// ユーザの登録（仮）
 		User user = new User();
 		user.setUserName(userName);
@@ -51,6 +51,13 @@ public class UserService {
 		token.setToken(uuid);
 		this.registrationTokenRepository.save(token);
 
-		this.mailtrapService.sendEmail(email, "[仮登録メール]", "仮登録メールです. uuID :: " + uuid);
+		this.mailtrapService.preRegister(email, uuid);
+	}
+
+	public void registerUser(String uuid) {
+		RegistrationToken token = this.registrationTokenRepository.findByTokenEquals(uuid);
+		User registerUser = token.getUser();
+		registerUser.setStatus(2);
+		this.userRepository.saveAndFlush(registerUser);
 	}
 }

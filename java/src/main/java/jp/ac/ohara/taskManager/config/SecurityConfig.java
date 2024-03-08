@@ -43,7 +43,7 @@ public class SecurityConfig {
 				.authorizeHttpRequests(request -> {
 					request
 							.requestMatchers("/login/").permitAll()
-							.requestMatchers("/register/").permitAll()
+							.requestMatchers("/register/**").permitAll()
 							.requestMatchers("/webjars/**").permitAll()
 							.requestMatchers("/js/**").permitAll()
 							.requestMatchers("/css/**").permitAll()

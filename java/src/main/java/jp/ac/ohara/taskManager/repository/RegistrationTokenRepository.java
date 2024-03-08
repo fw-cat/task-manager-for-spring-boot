@@ -6,4 +6,6 @@ import jp.ac.ohara.taskManager.model.RegistrationToken;
 
 public interface RegistrationTokenRepository extends JpaRepository<RegistrationToken, Long> {
 
+	public RegistrationToken findByTokenEquals(String token);
+
 }
