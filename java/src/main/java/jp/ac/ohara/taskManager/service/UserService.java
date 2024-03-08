@@ -23,7 +23,7 @@ public class UserService {
 	@Autowired
 	private RegistrationTokenRepository registrationTokenRepository;
 	@Autowired
-	private MailtrapService mailtrapService;
+	private MailSenderService mailtrapService;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
