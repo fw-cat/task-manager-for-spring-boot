@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import jp.ac.ohara.taskManager.config.views.LoginViews;
+import jp.ac.ohara.taskManager.config.views.TopViews;
 import jp.ac.ohara.taskManager.model.form.RegisterForm;
 import jp.ac.ohara.taskManager.service.UserService;
 
@@ -23,7 +25,7 @@ public class RegisterController {
 	@GetMapping("/register/")
 	public ModelAndView index(RegisterForm registerForm, ModelAndView model) {
 		model.addObject("registerForm", registerForm);
-		model.setViewName("views/login/register");
+		model.setViewName(LoginViews.REGISTER_FORM);
 		return model;
 	}
 
@@ -40,13 +42,13 @@ public class RegisterController {
 		} catch (Exception e) {
 			return this.index(registerForm, model);
 		}
-		model.setViewName("redirect:/");
+		model.setViewName(TopViews.TOP_REDIRECT);
 		return model;
 	}
 
 	@GetMapping("/register/{uuid}")
 	public String register(@PathVariable @NonNull String uuid) {
 		this.userService.registerUser(uuid);
-		return "redirect:/";
+		return TopViews.TOP_REDIRECT;
 	}
 }

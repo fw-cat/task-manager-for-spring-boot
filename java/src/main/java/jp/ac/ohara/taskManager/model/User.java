@@ -3,7 +3,6 @@ package jp.ac.ohara.taskManager.model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
@@ -19,7 +18,6 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -53,9 +51,6 @@ public class User implements UserDetails {
 
 	@PositiveOrZero(message = ErrorMessages.POSITIVE_OR_ZERO)
 	private int status;
-
-	@OneToMany(mappedBy = "user")
-	private List<Task> tasks;
 
 	@LastModifiedDate
 	@Temporal(TemporalType.TIMESTAMP)

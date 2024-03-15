@@ -6,12 +6,16 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -21,6 +25,7 @@ import lombok.Data;
 
 @Data
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "tags")
 @SQLDelete(sql = "UPDATE tags SET deleted_at = NOW() WHERE id=?")
 @SQLRestriction(value = "deleted_at IS NULL")
@@ -32,6 +37,10 @@ public class Tag {
 
 	@NotBlank(message = ErrorMessages.BLANK_MESSAGE)
 	private String name;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	@LastModifiedDate
 	@Temporal(TemporalType.TIMESTAMP)

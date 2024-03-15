@@ -1,0 +1,5 @@
+package jp.ac.ohara.taskManager.config.views;
+
+public class TopViews {
+	public static final String TOP_REDIRECT = "redirect:/";
+}

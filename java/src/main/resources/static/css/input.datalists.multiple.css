@@ -1,0 +1,17 @@
+.select-area {
+  font-size: .9rem;
+  display: inline-flex;
+}
+.select-area-tag {
+  padding: .2em .4em;
+  background-color: #acacac;
+  color: white;
+}
+.select-area-tag a {
+  margin-right: .5em;
+  text-decoration: none;
+  color: inherit;
+}
+.select-area-tag + .select-area-tag {
+  margin-left: .5em;
+}

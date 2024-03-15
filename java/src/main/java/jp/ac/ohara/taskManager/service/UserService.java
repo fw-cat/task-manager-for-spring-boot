@@ -8,6 +8,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import jp.ac.ohara.taskManager.model.RegistrationToken;
 import jp.ac.ohara.taskManager.model.User;
@@ -16,6 +17,7 @@ import jp.ac.ohara.taskManager.repository.RegistrationTokenRepository;
 import jp.ac.ohara.taskManager.repository.UserRepository;
 
 @Service
+@Transactional
 public class UserService {
 
 	@Autowired
