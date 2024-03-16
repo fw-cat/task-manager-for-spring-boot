@@ -51,14 +51,29 @@ public class TaskService {
 		this.taskTagService.save(task, tags);
 	}
 
-	/**
-	 * 更新処理
-	 * @param Task task
-	 * @param Long id
-	 */
-	public void save(Task task, List<Tag> tags, Long id) {
+	public void save(TaskForm form, User user, Long id) {
+		System.out.println("[TaskService::save] start ....");
+
+		// タグの追加
+		String[] tagsName = form.getTags().split(",");
+		List<Tag> tags = this.tagService.saveTags(tagsName, user);
+		System.out.println("[TaskService::save] save tags is " + tags.toString());
+
+		// タスクの追加
+		Task task = new Task();
 		task.setId(id);
+		task.setTitle(form.getName());
+		task.setDescription(form.getDescription());
+		task.setUser(user);
+		task.setDueDt(form.getDue());
+		task.setStatus(1);
 		this.save(task, tags);
+		System.out.println("[TaskService::save] save task is " + task);
+
+		// タスクに紐づくタグを一旦削除
+		this.taskTagService.deleteTaskTag(task);
+		// タスクに紐づくタグを一括登録
+		this.taskTagService.save(task, tags);
 	}
 
 	/**
