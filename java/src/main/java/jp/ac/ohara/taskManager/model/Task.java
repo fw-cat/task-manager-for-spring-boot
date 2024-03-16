@@ -68,6 +68,11 @@ public class Task {
 	@Column(nullable = false, updatable = false)
 	private Date createdAt;
 
+	private Date deletedAt;
+
+	// タグ一覧（関節テーブルがあるのでただの変数とする）
+	// private List<Tag> tags = new ArrayList<Tag>();
+
 	/**
 	 * 期日のLocalDateを取得
 	 * @return

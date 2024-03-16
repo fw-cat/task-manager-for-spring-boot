@@ -1,5 +1,6 @@
 package jp.ac.ohara.taskManager.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,5 +77,25 @@ public class TaskService {
 	public List<Task> getTasks(User user) {
 		List<Task> tasks = this.taskRepository.findAllByUserId(user.getId());
 		return tasks;
+	}
+
+	/**
+	 * 対象ユーザに紐づくタスクを取得
+	 * @param Long index
+	 * @param User user
+	 * @return
+	 */
+	public Task getTask(Long index, User user) {
+		Task task = this.taskRepository.findAllByIdAndUserId(index, user.getId());
+		return task;
+	}
+
+	public void deleteTask(Long id, User user) {
+		Task task = this.getTask(id, user);
+		Date nowAt = new Date();
+		task.setId(id);
+		task.setDeletedAt(nowAt);
+
+		this.taskRepository.saveAndFlush(task);
 	}
 }

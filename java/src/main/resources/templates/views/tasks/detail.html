@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/base :: layout(~{::title},~{::body/content()})}">
+
+<head>
+    <title>タスク管理サイト</title>
+</head>
+
+<body>
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <h3 class="col-8" th:text="${pageName}">タイトル</h3>
+        <th:block th:if="${validError!=null}">
+            <div class="alert alert-danger" role="alert" th:text="${validError}">問題が発生しました</div>
+        </th:block>
+        <div class="w-100"></div>
+        <div class="col-8" th:object="${task}">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="*{title}">タスク名</h5>
+                    <p class="card-text" th:text="*{description}">タスク詳細</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">タスクの期日</h5>
+                        </div>
+                        <p class="mb-1" th:text="*{getDueDay()}"></p>
+                    </li>
+                </ul>
+                <div class="card-footer d-flex justify-content-between">
+                    <a th:href="@{/tasks/edit/{id}(id=*{id})}" class="btn btn-info">編集</a>
+                    <a th:href="@{/tasks/delete/{id}(id=*{id})}" class="btn btn-danger">削除</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script th:src="@{/js/input.datalists.multiple.js}"></script>
+    <script>
+        const tagInput = multipleTextInput('tags', {
+            text_input: {
+                class: [
+                    'form-control'
+                ]
+            },
+            close_btn: {
+                label: "",
+                class: [
+                    'fa-solid', 'fa-xmark'
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>
